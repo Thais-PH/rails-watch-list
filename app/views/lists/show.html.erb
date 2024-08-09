@@ -1,10 +1,20 @@
 <div class="container">
 
+<div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path('2147698936-freepik_mlznyv')%>')">
+  Watch Lists
+</div>
+
 <p><strong>List</strong></p>
 
 <ul class="list-group">
+  <% if @list.photo.attached? %>
+    <%= cl_image_tag @list.photo.key, height: 300, width: 400, crop: :fill %>
+  <% end %>
   <% @list.bookmarks.each do |bookmark| %>
-    <li class="list-group-item"><%= bookmark.movie.title %>
+    <li class="list-group-item">
+    <%= image_tag bookmark.movie.poster_url, width: 200, crop: :fill %>
+    <br>
+    <%= bookmark.movie.title %>
     <br>
     <%= bookmark.comment %></li>
       <%= link_to "Delete",
